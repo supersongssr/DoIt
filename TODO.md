@@ -1,7 +1,11 @@
 a todo list 
 ====
 
-https://gemini.google.com/u/1/app/32498cbb6f16c827
+https://gemini.google.com/u/1/app/ebf934568093772e  分析
+
+https://gemini.google.com/u/1/app/e97b40199ca7ef46 架构
+
+
 
 copy from hugo do it version v0.4.0 
 
