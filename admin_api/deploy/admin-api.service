@@ -1,0 +1,17 @@
+[Unit]
+Description=DoIt Admin API
+Requires=admin-api.socket
+After=network.target
+
+[Service]
+Type=notify
+WorkingDirectory=/opt/admin_api
+EnvironmentFile=/opt/admin_api/.env
+ExecStart=/opt/admin_api/.venv/bin/python -m main
+NotifyAccess=all
+
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
