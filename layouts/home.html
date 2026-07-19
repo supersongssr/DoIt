@@ -1,0 +1,47 @@
+{{- define "title" }}
+    {{- $paginatorPager := .Scratch.Get "paginatorPager" -}}
+    {{- if and $paginatorPager (gt $paginatorPager.PageNumber 1) -}}
+        {{- T "prefixPageNumber" }} {{ $paginatorPager.PageNumber }} {{ T "suffixPageNumber" }} - {{ $.Site.Title -}}
+    {{ else }}
+        {{- $.Site.Title -}}
+    {{- end -}}
+{{- end -}}
+
+{{- define "content" -}}
+    {{- $params := .Scratch.Get "params" -}}
+    {{- $profile := .Site.Params.home.profile -}}
+    {{- $posts := .Site.Params.home.posts -}}
+
+    <div class="page-home home"{{ if ne $posts.enable false | or .Content }} posts{{ end }}>
+        {{- /* Profile */ -}}
+        {{- if ne $profile.enable false -}}
+            {{- partial "home/profile.html" . -}}
+        {{- end -}}
+
+        {{- /* Content */ -}}
+        {{- if .Content -}}
+            <div class="single">
+                <div class="content" id="content">
+                    {{- dict "Content" .Content "Ruby" $params.ruby "Fraction" $params.fraction "Fontawesome" $params.fontawesome | partial "function/content.html" | safeHTML -}}
+                </div>
+            </div>
+        {{- end -}}
+
+        {{- /* Posts */ -}}
+        {{- if ne $posts.enable false | and .Site.RegularPages -}}
+            <div class="summary-card">
+                {{- /* Paginate is first called on baseof.html (head/paginator.html) */ -}}
+                {{- range .Paginator.Pages -}}
+                    {{- .Render "summary" -}}
+                {{- end -}}
+            </div>
+            {{- partial "paginator.html" . -}}
+        {{- end -}}
+    </div>
+<script>
+    // invite 
+    if (window.location.search) {
+        localStorage.setItem("inviteby",window.location.search.slice(1));
+    }
+</script>
+{{- end -}}

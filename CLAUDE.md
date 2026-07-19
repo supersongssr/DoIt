@@ -4,22 +4,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DoIt is a customized Hugo blog theme (forked from [HEIGE-PCloud/DoIt](https://github.com/HEIGE-PCloud/DoIt)) used as a standalone site called "游戏仓库" (Game Repository). It has been extended with a user authentication system, URL shortening service, and invite code system built on Nginx + OpenResty (Lua) + Redis.
+DoIt is a Hugo theme — a template package for the Hugo static site generator. It is not a standalone web app. The `exampleSite/` directory contains a demo Hugo site that uses the theme.
 
-## Development Commands
+## Commands
 
 ```bash
-# Install dependencies
-npm install
-
-# Development (Hugo server + Tailwind watch)
+# Development (Hugo server + Tailwind CSS watch, concurrent)
 npm run dev
-
-# Hugo server only (with drafts)
-npm run server
-
-# Build Tailwind CSS
-npm run build:tailwind
 
 # Production build
 npm run build
@@ -27,44 +18,50 @@ npm run build
 # Build with draft content
 npm run build:preview
 
-# Lint JS
-npx eslint assets/js/
+# Hugo dev server only (no Tailwind)
+npm run server
+
+# Tailwind CSS only (watch mode)
+npm run server:tailwind
+
+# Format code
+npm run format
+
+# W3C HTML validation (requires Docker)
+npm run validate
+
+# Visual regression tests (requires Hugo running)
+npx playwright test
 ```
 
-Hugo Extended v0.83.0+ is required. The dev server serves from `exampleSite/` with themesDir set to `../..`.
+Hugo requires the **extended** version 0.146.0 or higher. Nix users: `flake.nix` provides the full environment automatically via direnv.
 
 ## Architecture
 
-### Hugo Theme Layer
-- **`layouts/`** - Hugo Go templates. `partials/` holds reusable components, `shortcodes/` has 18+ custom shortcodes, `_default/` has base layouts.
-- **`assets/`** - Source assets: `css/` (SCSS + Tailwind entry), `js/` (theme JS), `lib/` (vendored third-party libs), `svg/` (icons).
-- **`config/_default/`** - Hugo config split into multiple TOML files (`config.toml`, `params.toml`, `markup.toml`, etc.).
-- **`i18n/`** - 26 language translation files.
-- **`static/`** - Static assets served directly.
-- **`exampleSite/`** - Example/test site content and config used for development.
+### Directory Layout
 
-### Dynamic Backend Layer (Nginx + Lua + Redis)
-- **`lua/`** - OpenResty Lua scripts handling dynamic features that Hugo's static generation cannot:
-  - `user.lua` - User login/register with Redis backend
-  - `url.lua` - URL shortening and redirection
-  - `admin.lua` - Admin operations
-  - `util.lua` - Shared utilities (Redis connection, HTTP helpers)
-- Redis stores user data, invite codes, URL mappings, and session tokens with key prefix `g_`.
-- Custom Hugo layouts in `layouts/user/` and `layouts/login/` render the frontend for auth flows.
+- `layouts/` — Hugo HTML templates (the core of the theme)
+  - `_partials/` — reusable partials included by other templates
+  - `_shortcodes/` — 25+ custom Hugo shortcodes for rich content
+  - `_markup/` — render hooks for Markdown elements (links, images, headings, code blocks)
+  - `baseof.html`, `home.html`, `page.html`, `section.html`, `taxonomy.html` — top-level page templates
+- `assets/` — processed by Hugo pipes
+  - `css/` — Tailwind CSS entry point and custom styles
+  - `js/` — theme JavaScript
+  - `lib/` — vendored third-party libraries (KaTeX, mermaid, ECharts, FontAwesome, etc.)
+- `i18n/` — translation strings for 27 languages (TOML files)
+- `archetypes/` — content templates for `hugo new` commands
+- `static/` — files copied as-is to the output (no processing)
+- `exampleSite/` — demo Hugo site; use this to test theme changes
 
-### Frontend Stack
-- Tailwind CSS with `tw-` prefix (see `tailwind.config.js`)
-- Hugo Pipes for asset processing
-- Third-party JS libs vendored in `assets/lib/` and via npm
+### How It Fits Together
 
-### Internationalization
-- Translation files in `i18n/` follow Hugo's standard `.toml` format
-- Default language is `zh-cn`
+Hugo processes `layouts/` templates, which pull in partials from `_partials/`. CSS is compiled by Tailwind CLI (configured via `package.json` scripts). JavaScript and vendor libs in `assets/` are bundled by Hugo pipes at build time. The `exampleSite/` references the theme via a relative path and is used for the GitHub Pages demo and Playwright visual tests.
 
-## Key Conventions
+### Tailwind CSS
 
-- Hugo templates use Go template syntax (`{{ }}`, `{{- -}}`)
-- Lua scripts follow OpenResty conventions (`ngx.shared.dict`, `resty.redis`)
-- Tailwind classes use `tw-` prefix to avoid conflicts with existing CSS
-- All Redis keys use the `g_` prefix
-- Site is deployed behind Nginx with OpenResty for Lua script execution
+The theme uses Tailwind CSS v4. All classes use the `tw:` prefix (e.g., `tw:flex`, `tw:text-lg`). The Tailwind config/entry point lives in `assets/css/`.
+
+### Testing
+
+Playwright visual regression tests live in `tests/visual.spec.ts`. They spin up a Hugo server at `http://127.0.0.1:1313` and take screenshots across Chromium, Firefox, WebKit, and mobile viewports. Snapshots are stored in `tests/visual.spec.ts-snapshots/`. Note: tests are currently disabled in CI (`if: false` in `.github/workflows/playwright.yml`).

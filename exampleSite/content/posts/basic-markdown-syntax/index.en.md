@@ -50,7 +50,7 @@ John Gruber, the author of Markdown, puts it like this:
 Without further delay, let us go over the main elements of Markdown and what the resulting HTML looks like!
 
 {{< admonition tip >}}
-:(far fa-bookmark fa-fw): Bookmark this page for easy future reference!
+{{< fa-icon regular bookmark >}} Bookmark this page for easy future reference!
 {{< /admonition >}}
 
 ## Headings
@@ -486,11 +486,11 @@ The HTML looks like this:
 
 Use "fences" <code>```</code> to block in multiple lines of code with a language attribute.
 
-{{< highlight markdown >}}
+````markdown
 ```markdown
 Sample text here...
 ```
-{{< / highlight >}}
+````
 
 The HTML looks like this:
 
@@ -509,7 +509,7 @@ To activate it, simply add the file extension of the language you want to use di
 
 For example, to apply syntax highlighting to JavaScript code:
 
-{{< highlight markdown >}}
+````markdown {open=true}
 ```js
 grunt.initConfig({
   assemble: {
@@ -530,11 +530,11 @@ grunt.initConfig({
   }
 };
 ```
-{{< / highlight >}}
+````
 
 The rendered output looks like this:
 
-```js
+```js {open=true}
 grunt.initConfig({
   assemble: {
     options: {
@@ -555,9 +555,109 @@ grunt.initConfig({
 };
 ```
 
-{{< admonition >}}
-[Syntax highlighting page](https://gohugo.io/content-management/syntax-highlighting/) in **Hugo** Docs introduces more about syntax highlighting, including highlight shortcode.
-{{< /admonition >}}
+You can supply extra options to the code block.
+
+| Option | Description | Type |
+| ------ | ----------- | ---- |
+| open | Whether to expand the code block. The default value is determined by the `maxShownLines` option. | bool |
+| lineNos | Whether to show line numbers. | int |
+| wrap | Whether to wrap lines when they overflow. | bool |
+| title | Set the title of the code block. | string |
+| header | Whether to display the code header and control buttons. | bool |
+
+Here is an example
+
+````markdown {open=true}
+```go {open=true, lineNos=false, wrap=true, title="main.go", header=false}
+package main
+
+import "fmt"
+
+// calculateSquares calculates the sum of the squares of the digits of the given number
+// and sends the result to the squareop channel.
+func calculateSquares(number int, squareop chan int) {
+  sum := 0
+  for number != 0 {
+    digit := number % 10
+    sum += digit * digit
+    number /= 10
+  }
+  squareop <- sum
+}
+
+// calculateCubes calculates the sum of the cubes of the digits of the given number
+// and sends the result to the cubeop channel.
+func calculateCubes(number int, cubeop chan int) {
+  sum := 0
+  for number != 0 {
+    digit := number % 10
+    sum += digit * digit * digit
+    number /= 10
+  }
+  cubeop <- sum
+}
+
+func main() {
+  number := 589
+  sqrch := make(chan int)
+  cubech := make(chan int)
+
+  // Start two goroutines to calculate the sum of squares and cubes of the digits.
+  go calculateSquares(number, sqrch)
+  go calculateCubes(number, cubech)
+
+  // Receive the results from the channels and add them.
+  squares, cubes := <-sqrch, <-cubech
+  fmt.Println("Final result", squares+cubes)
+}
+```
+````
+
+The rendered output looks like this:
+
+```go {open=true, lineNos=false, wrap=true, title="main.go", header=false}
+package main
+
+import "fmt"
+
+// calculateSquares calculates the sum of the squares of the digits of the given number
+// and sends the result to the squareop channel.
+func calculateSquares(number int, squareop chan int) {
+  sum := 0
+  for number != 0 {
+    digit := number % 10
+    sum += digit * digit
+    number /= 10
+  }
+  squareop <- sum
+}
+
+// calculateCubes calculates the sum of the cubes of the digits of the given number
+// and sends the result to the cubeop channel.
+func calculateCubes(number int, cubeop chan int) {
+  sum := 0
+  for number != 0 {
+    digit := number % 10
+    sum += digit * digit * digit
+    number /= 10
+  }
+  cubeop <- sum
+}
+
+func main() {
+  number := 589
+  sqrch := make(chan int)
+  cubech := make(chan int)
+
+  // Start two goroutines to calculate the sum of squares and cubes of the digits.
+  go calculateSquares(number, sqrch)
+  go calculateCubes(number, cubech)
+
+  // Receive the results from the channels and add them.
+  squares, cubes := <-sqrch, <-cubech
+  fmt.Println("Final result", squares+cubes)
+}
+```
 
 ## Tables
 
@@ -734,10 +834,10 @@ Images have a similar syntax to links but include a preceding exclamation point.
 or:
 
 ```markdown
-![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Alt text](https://octodex.github.com/images/stormtroopocat.png "The Stormtroopocat")
 ```
 
-![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Alt text](https://octodex.github.com/images/stormtroopocat.png "The Stormtroopocat")
 
 Like links, images also have a footnote style syntax:
 

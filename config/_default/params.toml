@@ -153,7 +153,9 @@ keywords = ["游戏下载", "网盘下载"]
   fraction = false
   # whether to enable the fontawesome extended syntax
   # 是否使用 fontawesome 扩展语法
-  fontawesome = true
+  # NOTE: main 分支已废弃内联 fontawesome 语法（errorf），改用 {{< fa-icon >}} shortcode。
+  # GetIt 内容未使用 :( fa- ): 语法，故关闭以避免构建失败。
+  fontawesome = false
   # whether to show link to Raw Markdown content of the content
   # 是否显示原始 Markdown 文档内容的链接
   linkToMarkdown = false

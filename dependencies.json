@@ -3,7 +3,7 @@
     "dependencies": [
         {
             "name": "twikoo",
-            "version": "1.6.22",
+            "version": "1.7.14",
             "files": [
                 {
                     "remote": "dist/twikoo.all.min.js",
@@ -17,21 +17,21 @@
         },
         {
             "name": "@waline/client",
-            "version": "2.15.8",
+            "version": "3.15.2",
             "files": [
                 {
                     "remote": "dist/waline.css",
                     "local": "waline/waline.css"
                 },
                 {
-                    "remote": "dist/waline.js",
+                    "remote": "dist/waline.umd.min.js",
                     "local": "waline/waline.js"
                 }
             ]
         },
         {
             "name": "katex",
-            "version": "0.16.9",
+            "version": "0.18.0",
             "files": [
                 {
                     "remote": "dist/katex.min.js",
@@ -57,7 +57,7 @@
         },
         {
             "name": "echarts",
-            "version": "5.4.3",
+            "version": "6.1.0",
             "files": [
                 {
                     "remote": "dist/echarts.min.js",
@@ -71,7 +71,7 @@
         },
         {
             "name": "artalk",
-            "version": "2.6.4",
+            "version": "2.9.1",
             "files": [
                 {
                     "remote": "dist/Artalk.js",
@@ -93,7 +93,7 @@
         },
         {
             "name": "@artalk/plugin-katex",
-            "version": "0.1.5",
+            "version": "0.2.4",
             "files": [
                 {
                     "remote": "dist/artalk-plugin-katex.js",
@@ -103,11 +103,55 @@
         },
         {
             "name": "@artalk/plugin-lightbox",
-            "version": "0.1.1",
+            "version": "0.2.4",
             "files": [
                 {
                     "remote": "dist/artalk-plugin-lightbox.js",
                     "local": "artalk/artalk-plugin-lightbox.js"
+                }
+            ]
+        },
+        {
+            "name": "instant.page",
+            "version": "5.2.0",
+            "files": [
+                {
+                    "remote": "instantpage.min.js",
+                    "local": "instant.page/instantpage.min.js"
+                }
+            ]
+        },
+        {
+            "name": "typeit",
+            "version": "8.8.7",
+            "files": [
+                {
+                    "remote": "dist/index.umd.min.js",
+                    "local": "typeit/typeit.min.js"
+                }
+            ]
+        },
+        {
+            "name": "plantuml-encoder",
+            "version": "1.4.0",
+            "files": [
+                {
+                    "remote": "dist/plantuml-encoder.min.js",
+                    "local": "plantuml-encoder/plantuml-encoder.min.js"
+                }
+            ]
+        },
+        {
+            "name": "wavedrom",
+            "version": "3.6.2",
+            "files": [
+                {
+                    "remote": "wavedrom.min.js",
+                    "local": "wavedrom/wavedrom.min.js"
+                },
+                {
+                    "remote": "skins/default.js",
+                    "local": "wavedrom/skins/default.js"
                 }
             ]
         }

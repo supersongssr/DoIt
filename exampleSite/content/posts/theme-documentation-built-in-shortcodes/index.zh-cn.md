@@ -41,13 +41,13 @@ Hugo 附带了一组预定义的 shortcodes, 它们实现了一些非常常见�
 
 呈现的输出效果如下:
 
-{{< figure src="/images/lighthouse.webp" title="Lighthouse (figure)" >}}
+{{< figure src="/images/lighthouse.webp" alt="Lighthouse" title="Lighthouse (figure)" >}}
 
 输出的 HTML 看起来像这样:
 
 ```html
 <figure>
-    <img src="/images/lighthouse.webp"/>
+    <img src="/images/lighthouse.webp">
     <figcaption>
         <h4>Lighthouse (figure)</h4>
     </figcaption>
@@ -74,38 +74,6 @@ Hugo 附带了一组预定义的 shortcodes, 它们实现了一些非常常见�
 <script type="application/javascript" src="https://gist.github.com/spf13/7896402.js"></script>
 ```
 
-## highlight
-
-[`highlight` 的文档](https://gohugo.io/content-management/shortcodes#highlight)
-
-一个 `highlight` 示例:
-
-```markdown
-{{</* highlight html */>}}
-<section id="main">
-    <div>
-        <h1 id="title">{{ .Title }}</h1>
-        {{ range .Pages }}
-            {{ .Render "summary"}}
-        {{ end }}
-    </div>
-</section>
-{{</* /highlight */>}}
-```
-
-呈现的输出效果如下:
-
-{{< highlight html >}}
-<section id="main">
-    <div>
-        <h1 id="title">{{ .Title }}</h1>
-        {{ range .Pages }}
-            {{ .Render "summary"}}
-        {{ end }}
-    </div>
-</section>
-{{< /highlight >}}
-
 ## param
 
 [`param` 的文档](https://gohugo.io/content-management/shortcodes#param)
@@ -124,17 +92,17 @@ Hugo 附带了一组预定义的 shortcodes, 它们实现了一些非常常见�
 
 [`ref` 和 `relref` 的文档](https://gohugo.io/content-management/shortcodes#ref-and-relref)
 
-## tweet
+## x
 
-[`tweet` 的文档](https://gohugo.io/content-management/shortcodes#tweet)
+[`x` 的文档](https://gohugo.io/content-management/shortcodes#x)
 
-一个 `tweet` 示例:
+一个 `x` 示例:
 
 ```markdown
-{{</* tweet user="SanDiegoZoo" id="1453110110599868418" */>}}
+{{</* x user="SanDiegoZoo" id="1453110110599868418" */>}}
 ```
 
-{{< tweet user="SanDiegoZoo" id="1453110110599868418" >}}
+{{< x user="SanDiegoZoo" id="1453110110599868418" >}}
 
 ## vimeo
 

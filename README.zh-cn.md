@@ -90,6 +90,7 @@ DoIt 主题增加了许多新的功能与配置项，查看[变更日志](https:
 * 支持 **[Plausible Analytics](https://plausible.io/)**
 * 支持 **[Cloudflare Web Analytics](https://www.cloudflare.com/web-analytics)**
 * 支持 **[Splitbee Analytics](https://splitbee.io)**
+* 支持 **[Matomo Analytics](http://www.matomo.com/)**
 * 支持搜索引擎的**网站验证** (Google, Bind, Yandex and Baidu)
 * 支持所有第三方库的 **CDN**
 
@@ -193,17 +194,14 @@ DoIt 根据 **MIT** 许可协议授权。 更多信息请查看 [LICENSE 文件]
 
 DoIt 主题中用到了以下项目，感谢它们的作者：
 
-* [normalize.css](https://github.com/necolas/normalize.css)
 * [Font Awesome](https://fontawesome.com/)
 * [Simple Icons](https://github.com/simple-icons/simple-icons)
-* [Animate.css](https://daneden.github.io/animate.css/)
 * [autocomplete.js](https://github.com/algolia/autocomplete.js)
 * [algoliasearch](https://github.com/algolia/algoliasearch-client-javascript)
 * [Fuse.js](https://fusejs.io/)
 * [object-fit-images](https://github.com/fregante/object-fit-images)
 * [Twemoji](https://github.com/twitter/twemoji)
 * [lightgallery.js](https://github.com/sachinchoolur/lightgallery.js)
-* [clipboard.js](https://github.com/zenorocha/clipboard.js)
 * [Sharer.js](https://github.com/ellisonleao/sharer.js)
 * [TypeIt](https://typeitjs.com/)
 * [KaTeX](https://katex.org/)

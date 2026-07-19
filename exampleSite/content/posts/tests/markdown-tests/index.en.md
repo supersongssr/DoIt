@@ -85,6 +85,21 @@ Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi.
 >> Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor
 odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
 
+> [!NOTE]
+> Useful information that users should know, even when skimming content.
+
+> [!TIP]
+> Helpful advice for doing things better or more easily.
+
+> [!IMPORTANT]
+> Key information users need to know to achieve their goal.
+
+> [!WARNING]
+> Urgent info that needs immediate user attention to avoid problems.
+
+> [!CAUTION]
+> Advises about risks or negative outcomes of certain actions.
+
 
 ## Lists
 
@@ -153,8 +168,19 @@ This is a footnote with "label"[^label]
 [^1]: This is a digital footnote
 [^label]: This is a footnote with "label"
 
+## Definition Lists
+
+OAuth 2.0
+: An authorization framework for delegated access.
+
+PKCE
+: Proof Key for Code Exchange.
+
+Mermaid
+: A text-based diagramming tool.
+
 ## Images
 
 ![Minion](https://octodex.github.com/images/minion.png)
 
-![Alt text](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![Alt text](https://octodex.github.com/images/stormtroopocat.png "The Stormtroopocat")

@@ -28,3 +28,12 @@ resources/_gen/
 # Hugo
 .hugo_build.lock
 jsconfig.json
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Direnv
+.direnv/
